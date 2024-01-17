@@ -1,0 +1,14 @@
+{
+	"Gen1": [
+		{
+			"Name": "Bulbasur",
+			"Type1": "Grass",
+			"Type2": "Poison"
+		},
+		{
+			"Name": "Ivysaur",
+			"Type1": "Grass",
+			"Type2": "Poison"
+		}
+	]
+}
