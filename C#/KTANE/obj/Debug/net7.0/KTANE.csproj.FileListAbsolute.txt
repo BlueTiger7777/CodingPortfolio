@@ -1,0 +1,15 @@
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\bin\Debug\net7.0\KTANE.exe
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\bin\Debug\net7.0\KTANE.deps.json
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\bin\Debug\net7.0\KTANE.runtimeconfig.json
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\bin\Debug\net7.0\KTANE.dll
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\bin\Debug\net7.0\KTANE.pdb
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.csproj.AssemblyReference.cache
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.AssemblyInfoInputs.cache
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.AssemblyInfo.cs
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.csproj.CoreCompileInputs.cache
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.dll
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\refint\KTANE.dll
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.pdb
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\KTANE.genruntimeconfig.cache
+C:\Users\alex\OneDrive\Documents\C Sharp\KTANE\obj\Debug\net7.0\ref\KTANE.dll
