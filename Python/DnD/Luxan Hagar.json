@@ -1,0 +1,33 @@
+{
+    "inventory": {
+        "equipment": [
+            {
+                "name": "Test",
+                "quantity": 1,
+                "weight": 10.0,
+                "value": 100.0,
+                "enabled": false,
+                "description": "this is a test item",
+                "charges": "n/a"
+            }
+        ],
+        "backpack": [],
+        "coinPouch": []
+    },
+    "spells": {
+        "spellbook": []
+    },
+    "character": {
+        "persona": {
+            "class": [],
+            "race": {}
+        },
+        "stats": {
+            "baseAbility": [],
+            "saveingStats": [],
+            "sences": [],
+            "combat": [],
+            "skills": []
+        }
+    }
+}

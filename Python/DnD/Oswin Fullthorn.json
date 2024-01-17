@@ -1,0 +1,724 @@
+{
+    "inventory": {
+        "equipment": [
+            {
+                "name": "Dagger",
+                "quantity": 1,
+                "weight": 1.0,
+                "value": 2.0,
+                "details": "Finesse, light, thrown (range 20/60)",
+                "damage": "1d4 + {max(strengthMod, dexterityMod)}",
+                "damageType": "Piercing",
+                "attackBonus": "max(strengthMod, dexterityMod) + proficiencyBonus",
+                "enabled": true
+            },
+            {
+                "name": "Quarterstaff",
+                "quantity": 1,
+                "weight": 1,
+                "value": 0.5,
+                "details": "Versatile (1d8)",
+                "damage": "1d6 + {strengthMod}",
+                "damageType": "Bludgeoning",
+                "attackBonus": "strengthMod + proficiencyBonus",
+                "enabled": true
+            },
+            {
+                "name": "Arcane focus rod",
+                "quantity": 1,
+                "weight": 2,
+                "value": 10,
+                "enabled": false,
+                "description": "An arcane focus is a special item \u00e2\u20ac\u201d an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item \u00e2\u20ac\u201d designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+            },
+            {
+                "name": "Spellbook",
+                "quantity": 1,
+                "weight": "3",
+                "value": "50",
+                "enabled": "False",
+                "description": "Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells."
+            }
+        ],
+        "backpack": [
+            {
+                "name": "Book",
+                "plural": "Books",
+                "quantity": 1,
+                "weight": 5,
+                "value": 25,
+                "enabled": false,
+                "description": "A book might contain poetry, historical accounts, information pertaining to a particular field of lore, diagrams and notes on gnomish contraptions, or just about anything else that can be represented using text or pictures. A book of spells is a spellbook."
+            },
+            {
+                "name": "Ink (1 ounce bottle)",
+                "plural": "Ink (1 ounce bottle)",
+                "quantity": 1,
+                "weight": 0,
+                "value": 10,
+                "enabled": false,
+                "description": "A bottle of writing ink"
+            },
+            {
+                "name": "Ink pen",
+                "plural": "Ink pens",
+                "quantity": 1,
+                "weight": 0,
+                "value": 0.02,
+                "enabled": false,
+                "description": "A pen for writing"
+            },
+            {
+                "name": "Parchment (one sheet)",
+                "plural": "Sheets of parchment",
+                "quantity": 10,
+                "weight": 0,
+                "value": 0.1,
+                "enabled": false,
+                "description": "Parchment used for writing"
+            },
+            {
+                "name": "Small Knife",
+                "plural": "Small Knifes",
+                "quantity": 1,
+                "weight": 0,
+                "value": 0,
+                "enabled": false,
+                "description": "A small knife, typixally found in a scholar's pack"
+            },
+            {
+                "name": "Little Bag of Sand",
+                "plural": "Little Bags of Sand",
+                "quantity": 1,
+                "weight": 0,
+                "value": 0,
+                "enabled": false,
+                "description": "A Bag of sand, typically found in a scholar's pack"
+            },
+            {
+                "name": "Bag of Carrots",
+                "plural": "Bags of Carrots",
+                "quantity": 1,
+                "weight": 0,
+                "value": 0,
+                "enabled": false,
+                "description": "A bag full of carrots"
+            },
+            {
+                "name": "Bag of Dandilion Leafs",
+                "plural": "Bags of Dandilion Leafs",
+                "quantity": 1,
+                "weight": 0,
+                "value": 0,
+                "enabled": false,
+                "description": "A bag of dandilion leafs"
+            },
+            {
+                "name": "Bag of Feed",
+                "plural": "Bags of Feed",
+                "quantity": 1,
+                "weight": 0,
+                "value": 0,
+                "enabled": false,
+                "description": "A bag of feed"
+            }
+        ],
+        "coinPouch": [
+            {
+                "name": "Gold Piece",
+                "plural": "Gold Pieces",
+                "quantity": 4,
+                "weight": 0.02,
+                "value": 1,
+                "enabled": false
+            },
+            {
+                "name": "Silver Piece",
+                "plural": "Silver Pieces",
+                "quantity": 3,
+                "weight": 0.02,
+                "value": 0.1,
+                "enabled": false
+            },
+            {
+                "name": "Copper Piece",
+                "plural": "Copper Pieces",
+                "quantity": 3,
+                "weight": 0.02,
+                "value": 0.01,
+                "enabled": false
+            }
+        ]
+    },
+    "spells": {
+        "spellbook": [
+            {
+                "name": "Ray of Frost",
+                "level": "Cantrip",
+                "class": "Wizard",
+                "school": "Evocation",
+                "ritual": false,
+                "castTime": "Action",
+                "range": "60 Feat",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "None",
+                "duration": "Instantaneous",
+                "description": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn. The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+                "details": "Range 60 feet, target speed reduced by 10ft on hit",
+                "damage": "{floor((Level+1)/6+1}d8",
+                "damageType": "Cold",
+                "attackBonus": "attackBonus",
+                "prepared": true
+            },
+            {
+                "name": "Light",
+                "level": "Cantrip",
+                "class": "Wizard",
+                "school": "Evocation",
+                "ritual": false,
+                "castTime": "Action",
+                "range": "Touch",
+                "verbal": true,
+                "somatic": false,
+                "concentration": false,
+                "material": "A firefly of phosphorescent moss",
+                "duration": "1 Hour",
+                "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action. If you target an object held or worn by a hostile creature, that creature must succeed on a DC Dexterity saving throw to avoid the spell.",
+                "prepared": true
+            },
+            {
+                "name": "Mage Hand",
+                "level": "0",
+                "class": "Wizard",
+                "school": "Conjuration",
+                "ritual": false,
+                "castTime": "action",
+                "range": "30 feet",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "None",
+                "duration": "1 minute",
+                "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can\u00e2\u20ac\u2122t attack, activate magic items, or carry more than 10 pounds.",
+                "prepared": true
+            },
+            {
+                "name": "True Strike",
+                "level": "0",
+                "class": "Wizard",
+                "school": "Divination",
+                "ritual": false,
+                "castTime": "action",
+                "range": "30 feet",
+                "verbal": false,
+                "somatic": true,
+                "concentration": true,
+                "material": "None",
+                "duration": "Concentration, up to 1 round",
+                "description": "You extend your hand and point a finger at a target in range. Your magic grants you a brief insight into the target\u00e2\u20ac\u2122s defenses. On your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn\u00e2\u20ac\u2122t ended.",
+                "prepared": true
+            },
+            {
+                "name": "Burning Hands",
+                "level": "1",
+                "class": "Wizard",
+                "school": "Evocation",
+                "ritual": false,
+                "castTime": "action",
+                "range": "Self (15-foot cone)",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "None",
+                "duration": "Instantaneous",
+                "description": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a DC {DC} Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+                "details": "The fire ignites any flammable objects in the area that aren't being worn or carried.",
+                "damage": "3d6",
+                "damageType": "Fire",
+                "attackBonus": "dexterity",
+                "prepared": true
+            },
+            {
+                "name": "Mage Armour",
+                "level": "1",
+                "class": "Wizard",
+                "school": "Abjuration",
+                "ritual": false,
+                "castTime": "action",
+                "range": "Touch",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "a piece of cured leather",
+                "duration": "8 hours",
+                "description": "You touch a willing creature who isn\u00e2\u20ac\u2122t wearing armor, and a protective magical force surrounds it until the spell ends. The target\u00e2\u20ac\u2122s base AC becomes 13 + its Dexterity modifier. The spell ends if the target dons armor or if you dismiss the spell as an action.",
+                "prepared": true
+            },
+            {
+                "name": "Magic Missile",
+                "level": "1",
+                "class": "Wizard",
+                "school": "Evocation",
+                "ritual": false,
+                "castTime": "action",
+                "range": "120 feet",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "None",
+                "duration": "Instantaneous",
+                "description": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the spell creates one more dart for each slot level above 1st.",
+                "details": "The darts strike simultaneously",
+                "damage": "1d4+1",
+                "damageType": "Force",
+                "attackBonus": "None",
+                "prepared": true
+            },
+            {
+                "name": "Charm Person",
+                "level": "1",
+                "class": "Wizard",
+                "school": "Enchantment",
+                "ritual": false,
+                "castTime": "action",
+                "range": "30 feet",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "None",
+                "duration": "1 hour",
+                "description": "You attempt to charm a humanoid you can see within range. It must make a DC {DC} Wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the spell ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.",
+                "prepared": false
+            },
+            {
+                "name": "Feather Fall",
+                "level": "1",
+                "class": "Wizard",
+                "school": "Transmutation",
+                "ritual": false,
+                "castTime": "1 reaction, which you take when you or a creature within 60 feet of you falls",
+                "range": "60 feet",
+                "verbal": true,
+                "somatic": false,
+                "concentration": false,
+                "material": "A small feather or piece of down",
+                "duration": "1 minute",
+                "description": "Choose up to five falling creatures within range. A falling creature\u00e2\u20ac\u2122s rate of descent slows to 60 feet per round until the spell ends. If the creature lands before the spell ends, it takes no falling damage and can land on its feel, and the spell ends for that creature.",
+                "prepared": false
+            },
+            {
+                "name": "Sleep",
+                "level": "1",
+                "class": "Wizard",
+                "school": "Enchantment",
+                "ritual": false,
+                "castTime": "action",
+                "range": "90 feet",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "A pinch of fine sand, rose petals, or a chricket",
+                "duration": "1 minute",
+                "description": "This spell sends creatures into a magical slumber. Roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring unconscious creatures). Starting with the creature that has the lowest current hit points, each creature affected by this spell falls unconscious until the spell ends, the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected. Undead and creatures immune to being charmed aren't affected by this spell. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d8 for each slot level above 1st.",
+                "prepared": false
+            },
+            {
+                "name": "Locate Object",
+                "level": "2",
+                "class": "Wizard",
+                "school": "Divination",
+                "ritual": false,
+                "castTime": "action",
+                "range": "Self",
+                "verbal": true,
+                "somatic": true,
+                "concentration": true,
+                "material": "A forked twig",
+                "duration": "Concentration, up to 1 hour",
+                "description": "Describe or name an object that is familiar to you. You sense the direction to the object's location, as lang as that object is within 1,000 feet of you. If the object is in motion, you know the direction of its movement. The spell can locate a specific object known to you, as long as you have seen it up close-within 30 feet-at least once. Alternatively, the spell can locate the nearest object of a particular kind, such as a certain kind of apparel, jewelry, furniture, tool, or weapon. This spell can't locate an object if any thickness of lead, even a thin sheet, blocks a direct path between you and the object.",
+                "prepared": false
+            },
+            {
+                "name": "Misty Step",
+                "level": "2",
+                "class": "Wizard",
+                "school": "Conjuration",
+                "ritual": false,
+                "castTime": "bonus action",
+                "range": "Self",
+                "verbal": true,
+                "somatic": false,
+                "concentration": false,
+                "material": "None",
+                "duration": "Instantaneous",
+                "description": "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.",
+                "prepared": false
+            },
+            {
+                "name": "Fireball",
+                "level": "3",
+                "class": "Wizard",
+                "school": "Evocation",
+                "ritual": false,
+                "castTime": "action",
+                "range": "150 feet",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "A tiny ball of bat guano and sulfur",
+                "duration": "Instantaneous",
+                "description": "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a DC {DC} Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one. The fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried. At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+                "details": "20 foot radius",
+                "damage": "8d6",
+                "damageType": "Fire",
+                "attackBonus": "dexterity",
+                "prepared": true
+            },
+            {
+                "name": "Magic Circle",
+                "level": "3",
+                "class": "Wizard",
+                "school": "Abjuration",
+                "ritual": false,
+                "castTime": "1 minute",
+                "range": "10 feet",
+                "verbal": true,
+                "somatic": true,
+                "concentration": false,
+                "material": "Holy water or powedered silver and iron worth at least 100gp, which the spell consumes",
+                "duration": "1 hour",
+                "description": "You create a 10-foot-radius, 20-foot-tall cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the cylinder intersects with the floor or other surface. Choose one or more of the following types of creatures: celestials, elementals, fey, fiends, or undead. The circle affects a creature of the chosen type in the following ways: The creature can't willingly enter the cylinder by nonmagical means. If the creature tries to use teleportation or interplanar travel to do so, it must first succeed on a DC {DC} Charisma saving throw. The creature has disadvantage on attack rolls against targets within the cylinder. Targets within the cylinder can't be charmed, frightened, or possessed by the creature.",
+                "prepared": true
+            },
+            {
+                "name": "Vampiric Touch",
+                "level": "3",
+                "class": "Wizard",
+                "school": "Necromancy",
+                "ritual": false,
+                "castTime": "action",
+                "range": "Self",
+                "verbal": true,
+                "somatic": true,
+                "concentration": true,
+                "material": "None",
+                "duration": "Concentration, up to 1 minuet",
+                "description": "The touch of your shadow-wreathed hand can siphon life force from others to heal your wounds. Make a melee spell attack against a creature within your reach. On a hit, the target takes 3d6 necrotic damage, and you regain hit points equal to half the amount of necrotic damage dealt. Until the spell ends, you can make the attack again on each of your turns as an action. At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.",
+                "details": "Heal self from damage",
+                "damage": "3d6",
+                "damageType": "Necrotic",
+                "attackBonus": "None",
+                "prepared": true
+            },
+            {
+                "name": "Counterspell",
+                "level": "3",
+                "class": "Wizard",
+                "school": "Abjuration",
+                "ritual": false,
+                "castTime": "1 reaction which you take when you see a creature within 60 feet of you casting a spell",
+                "range": "60 feet",
+                "verbal": false,
+                "somatic": true,
+                "concentration": false,
+                "material": "None",
+                "duration": "Instantaneous",
+                "description": "You attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect. At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the interrupted spell has no effect if its level is less than or equal to the level of the spell slot you used.",
+                "prepared": true
+            },
+            {
+                "name": "Flame Arrow",
+                "level": "3",
+                "class": "Wizard",
+                "school": "Transmutation",
+                "ritual": false,
+                "castTime": "1 action",
+                "range": "Touch",
+                "verbal": true,
+                "somatic": true,
+                "concentration": true,
+                "material": "None",
+                "duration": "1 hour",
+                "description": "You touch a quiver containing arrows or bolts. When a target is hit by a ranged weapon attack using a piece of ammunition drawn from the quiver, the target takes an extra 1d6 fire damage. The spell's magic ends on the piece of ammunition when it hits or misses, and the spell ends when twelve pieces of ammunition have been drawn from the quiver. At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the number of pieces of ammunition you can affect with this spell increases by two for each slot level above 3rd.",
+                "prepared": false
+            }
+        ]
+    },
+    "character": {
+        "persona": {
+            "class": [
+                {
+                    "name": "Wizard",
+                    "level": "5",
+                    "spellcaster": true,
+                    "languages": "Riedran, Zemnian",
+                    "proficiencies": "Crossbow, Light, Dagger, Dart, Quarterstaff, Sling, Insight, Investigation",
+                    "extra": "School of Evocation"
+                }
+            ],
+            "race": {
+                "race": "Human",
+                "gender": "Male",
+                "languages": "Common, Elvish"
+            }
+        },
+        "stats": {
+            "baseAbility": [
+                {
+                    "ability": "Strength",
+                    "score": "9",
+                    "mod": "-1"
+                },
+                {
+                    "ability": "Dexterity",
+                    "score": "14",
+                    "mod": "+2"
+                },
+                {
+                    "ability": "Constitution",
+                    "score": "15",
+                    "mod": "+2"
+                },
+                {
+                    "ability": "Intelligance",
+                    "score": "17",
+                    "mod": "+3"
+                },
+                {
+                    "ability": "Wisdom",
+                    "score": "12",
+                    "mod": "+1"
+                },
+                {
+                    "ability": "Charisma",
+                    "score": "13",
+                    "mod": "+1"
+                }
+            ],
+            "savingStats": [
+                {
+                    "name": "Strength",
+                    "score": "-1",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Dexterity",
+                    "score": "+2",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Constitution",
+                    "score": "+2",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Intelligance",
+                    "score": "+6",
+                    "proficient": "Proficient"
+                },
+                {
+                    "name": "Wisdom",
+                    "score": "+4",
+                    "proficient": "Proficient"
+                },
+                {
+                    "name": "Charisma",
+                    "score": "+1",
+                    "proficient": "Not Proficient"
+                }
+            ],
+            "sences": [
+                {
+                    "sence": "Perception",
+                    "mod": "WIS 11 Passive"
+                },
+                {
+                    "sence": "Investigation",
+                    "mod": "INT 16 Passive"
+                },
+                {
+                    "sence": "Insight",
+                    "mod": "WIS 14 Passive"
+                }
+            ],
+            "combat": [
+                {
+                    "name": "Proficiency Bonus",
+                    "value": "+3"
+                },
+                {
+                    "name": "Walking Speed",
+                    "value": "30 feet"
+                },
+                {
+                    "name": "Armor Class",
+                    "value": 12
+                },
+                {
+                    "name": "Initiative",
+                    "value": "+2"
+                },
+                {
+                    "name": "Max HP",
+                    "value": 32
+                },
+                {
+                    "name": "Current HP",
+                    "value": 32
+                },
+                {
+                    "name": "Inspration",
+                    "value": "None"
+                },
+                {
+                    "name": "Defenses",
+                    "value": [
+                        {
+                            "name": "Fire",
+                            "description": "Resist"
+                        }
+                    ]
+                },
+                {
+                    "name": "Conditions",
+                    "value": [
+                        {
+                            "name": "Blinded",
+                            "description": "Can't see"
+                        }
+                    ]
+                }
+            ],
+            "skills": [
+                {
+                    "name": "Acrobatics",
+                    "stat": "DEX",
+                    "bonus": "+2",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Animal Handling",
+                    "stat": "WIS",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Arcana",
+                    "stat": "INT",
+                    "bonus": "+6",
+                    "advantage": "None",
+                    "proficient": "Proficient"
+                },
+                {
+                    "name": "Athletics",
+                    "stat": "STR",
+                    "bonus": "-1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Deception",
+                    "stat": "CHA",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "History",
+                    "stat": "INT",
+                    "bonus": "+6",
+                    "advantage": "None",
+                    "proficient": "Proficient"
+                },
+                {
+                    "name": "Insight",
+                    "stat": "WIS",
+                    "bonus": "+4",
+                    "advantage": "None",
+                    "proficient": "Proficient"
+                },
+                {
+                    "name": "intimidation",
+                    "stat": "CHA",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Investigation",
+                    "stat": "INT",
+                    "bonus": "+6",
+                    "advantage": "None",
+                    "proficient": "Proficient"
+                },
+                {
+                    "name": "Medicine",
+                    "stat": "WIS",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Nature",
+                    "stat": "INT",
+                    "bonus": "+3",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Perception",
+                    "stat": "WIS",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Performance",
+                    "stat": "CHA",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Persuasion",
+                    "stat": "CHA",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Religion",
+                    "stat": "INT",
+                    "bonus": "+3",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Sleight of Hand",
+                    "stat": "DEX",
+                    "bonus": "+2",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Stealth",
+                    "stat": "DEX",
+                    "bonus": "+2",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                },
+                {
+                    "name": "Survival",
+                    "stat": "WIS",
+                    "bonus": "+1",
+                    "advantage": "None",
+                    "proficient": "Not Proficient"
+                }
+            ]
+        }
+    }
+}
