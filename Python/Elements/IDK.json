@@ -1,6 +1,21 @@
 {
-	"Elements":{
-		"Hydrogen - 1": 0,
-		"Hydrogen - 2": 0 
-	}
+    "items": [
+        {
+            "name": "Hydrogen-1",
+            "count": 11,
+            "baseValue": 100,
+            "prevValue": 100,
+            "curentValue": 100
+        },
+        {
+            "name": "Hydrogen-2",
+            "count": 0,
+            "baseValue": 1000,
+            "prevValue": 1000,
+            "curentValue": 1000
+        }
+    ],
+    "shop": {
+        "lastUpdate": "2024-01-19 11:30:00"
+    }
 }

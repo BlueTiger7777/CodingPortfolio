@@ -1,4 +1,4 @@
-#Version 2
+#Version 3
 
 #Notes
 
@@ -12,12 +12,24 @@ import datetime as t
 fileFormat = ".json"
 
 newFileData={
-	"elements": {
-		"hydrogen-1": 0,
-		"hydrogen-2": 0
-	},
+	"items": [
+		{
+			"name": "Hydrogen-1",
+			"count": 0,
+			"baseValue": 100,
+			"prevValue": 100,
+			"curentValue": 100
+		},
+		{
+			"name": "Hydrogen-2",
+			"count": 0,
+			"baseValue": 1000,
+			"prevValue": 1000,
+			"curentValue": 1000
+		}
+	],
 	"shop": {
-		"lastUpdate": str(t.datetime.now())
+		"lastUpdate": str(t.datetime.now())[:-7]
 	}
 }
 
@@ -57,22 +69,31 @@ def Machines():
 
 #Shop
 def Shop():
-	if t.datetime.strptime(str(t.datetime.now()-t.datetime.strptime(data["shop"]["lastUpdate"], '%Y-%m-%d %H:%M:%S.%f')),'%H:%M:%S.%f') > t.datetime.strptime("0:30:00.000000", '%H:%M:%S.%f'):
-		print('idk')
+	updateShop=True
+	Time=t.datetime.strptime(data["shop"]["lastUpdate"], '%Y-%m-%d %H:%M:%S')
+	while updateShop == True:
+		if t.datetime.strptime(str(Time+t.timedelta(minutes=30)), '%Y-%m-%d %H:%M:%S') < t.datetime.now():
+			Time=t.datetime.strptime(str(Time+t.timedelta(minutes=30)), '%Y-%m-%d %H:%M:%S')
+			print(Time)
+		else:
+			data["shop"]["lastUpdate"]=str(Time)
+			with open(fileName, '+r') as f:
+				f.write(json.dumps(data, indent=4))
+			updateShop=False
 
-#Hydroget collector
+#Hydrogen collector
 def HCol():
 	x=round(r.random()*100,4)
 	if x > 99.9855:
-		print("Hydrogen - 2")
-		data["elements"]["hydrogen-2"]+=1
-		with open(fileName, 'r+') as f:
-			f.write(json.dumps(data, indent=4))
+		el="Hydrogen-2"
 	else:
-		print("Hydrogen - 1")
-		data["elements"]["hydrogen-1"]+=1
-		with open(fileName, 'r+') as f:
-			f.write(json.dumps(data, indent=4))
+		el="Hydrogen-1"
+
+	for i in data["items"]:
+		if i["name"] == el:
+			i["count"]+=1
+			with open(fileName, 'r+') as f:
+				f.write(json.dumps(data, indent=4))
 
 #Main
 while True:
@@ -88,9 +109,8 @@ while True:
 			Machines()
 	elif Command=="inventory":
 		print("Elements: ")
-		print(data["elements"]["hydrogen-1"])
-		for i in data["elements"]:
-			print(f'{i.title()}: {data["elements"][i]}')
+		for i in data["items"]:
+			print(f'{i["name"].title()}: {i["count"]}')
 	elif Command=="shop":
 		Shop()
 		
