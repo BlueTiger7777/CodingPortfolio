@@ -1,4 +1,4 @@
-#Version 3
+#Version 4
 
 #Notes
 
@@ -18,14 +18,14 @@ newFileData={
 			"count": 0,
 			"baseValue": 100,
 			"prevValue": 100,
-			"curentValue": 100
+			"currentValue": 100
 		},
 		{
 			"name": "Hydrogen-2",
 			"count": 0,
 			"baseValue": 1000,
 			"prevValue": 1000,
-			"curentValue": 1000
+			"currentValue": 1000
 		}
 	],
 	"shop": {
@@ -75,6 +75,17 @@ def Shop():
 		if t.datetime.strptime(str(Time+t.timedelta(minutes=30)), '%Y-%m-%d %H:%M:%S') < t.datetime.now():
 			Time=t.datetime.strptime(str(Time+t.timedelta(minutes=30)), '%Y-%m-%d %H:%M:%S')
 			print(Time)
+			for i in data["items"]:
+				i["prevValue"]=i["currentValue"]
+				costChange=True
+				while costChange == True:
+					cost=r.randrange(7,11)/10
+					if i["currentValue"]*cost > i["baseValue"]*2 or i["currentValue"]*cost < i["baseValue"]*0.4:
+						pass
+					data["items"][0]["currentValue"]*cost
+					with open(fileName, '+r') as f:
+						f.write(json.dumps(data, indent=4))
+					costChange=False
 		else:
 			data["shop"]["lastUpdate"]=str(Time)
 			with open(fileName, '+r') as f:
