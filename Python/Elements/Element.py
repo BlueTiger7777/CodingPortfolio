@@ -1,4 +1,4 @@
-#Version 4
+#Version 5
 
 #Notes
 
@@ -74,23 +74,24 @@ def Shop():
 	while updateShop == True:
 		if t.datetime.strptime(str(Time+t.timedelta(minutes=30)), '%Y-%m-%d %H:%M:%S') < t.datetime.now():
 			Time=t.datetime.strptime(str(Time+t.timedelta(minutes=30)), '%Y-%m-%d %H:%M:%S')
-			print(Time)
 			for i in data["items"]:
 				i["prevValue"]=i["currentValue"]
 				costChange=True
 				while costChange == True:
-					cost=r.randrange(7,11)/10
-					if i["currentValue"]*cost > i["baseValue"]*2 or i["currentValue"]*cost < i["baseValue"]*0.4:
-						pass
-					data["items"][0]["currentValue"]*cost
-					with open(fileName, '+r') as f:
-						f.write(json.dumps(data, indent=4))
-					costChange=False
+					cost=r.randrange(7,14)/10
+					if i["currentValue"]*cost < i["baseValue"]*2 or i["currentValue"]*cost > i["baseValue"]*0.4:
+						i["currentValue"]*=cost
+						with open(fileName, '+r') as f:
+							f.write(json.dumps(data, indent=4))
+						costChange=False
 		else:
 			data["shop"]["lastUpdate"]=str(Time)
 			with open(fileName, '+r') as f:
 				f.write(json.dumps(data, indent=4))
 			updateShop=False
+			
+	for i in data["items"]:
+		print(f'{i["name"]}:\t{i["currentValue"]}')
 
 #Hydrogen collector
 def HCol():
@@ -121,7 +122,7 @@ while True:
 	elif Command=="inventory":
 		print("Elements: ")
 		for i in data["items"]:
-			print(f'{i["name"].title()}: {i["count"]}')
+			print(f'{i["name"].title()}:\t{i["count"]}')
 	elif Command=="shop":
 		Shop()
 		
