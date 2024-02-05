@@ -1,4 +1,4 @@
-#Version 5
+#Version 6
 
 #Notes
 
@@ -79,7 +79,7 @@ def Shop():
 				costChange=True
 				while costChange == True:
 					cost=r.randrange(7,14)/10
-					if i["currentValue"]*cost < i["baseValue"]*2 or i["currentValue"]*cost > i["baseValue"]*0.4:
+					if i["currentValue"]*cost < i["baseValue"]*2 and i["currentValue"]*cost > i["baseValue"]*0.4:
 						i["currentValue"]*=cost
 						with open(fileName, '+r') as f:
 							f.write(json.dumps(data, indent=4))
