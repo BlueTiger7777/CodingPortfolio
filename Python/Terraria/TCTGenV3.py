@@ -150,7 +150,7 @@ while TreeGen==True:
                 y.append(Item)
                 NodeGen=False
             else:
-                input(f'{Item} is not present in image folder. Please add it and press ENTER')
+                input(f'{FileItem} is not present in image folder. Please add it and press ENTER')
     except (IndexError, KeyboardInterrupt):
         print("End of file")
         TreeGen=False
