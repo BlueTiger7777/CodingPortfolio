@@ -22,12 +22,12 @@ file=open("CraftingTree.txt")
 d=file.readlines()
 ImageForm=".webp"
 Item=str(d[x])
-ImagePath="C:\\Users\\alex\\Documents\\Terraria Crafting Tree Gen\\Items\\"
+ImagePath="<path\\to\\items>"
 Image=ImagePath+Item[:-1]+ImageForm
 alt=100
 prevItem=Item
 y=[]
-ModPath="C:\\Users\\alex\\Documents\\My Games\\Terraria\\tModLoader\\Mods\\enabled.json"
+ModPath="<path\\to\\enabled\\mods>"
 with open(ModPath, "r+") as m:
     Mods=json.load(m)
 
@@ -170,7 +170,7 @@ print("Rendering Tree...")
 z=open("CraftingTreeOut.txt", "w")
 z.writelines(y)
 z.close()
-t.render("C:\\Users\\alex\\Documents\\Terraria Crafting Tree Gen\\Crafting.png")
+t.render("<path\\to\\output>")
 print("Tree Rendered")
 
 print("Adding Mods...")
