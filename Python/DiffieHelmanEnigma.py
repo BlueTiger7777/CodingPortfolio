@@ -80,7 +80,7 @@ def enigmaGen(k, out):
             plugs += " "
     engine = enigma.Enigma(reflec, rotors[0], rotors[1], rotors[2], key=key, plugs=plugs, ring=ring)
     if out:
-        print(f'Machine Settings: {engine}\nPlugs: {plugs}')
+        print(f'Machine Settings: {engine}\nPlugs: {plugs}\nRing: {ring}')
     return engine
 
 
