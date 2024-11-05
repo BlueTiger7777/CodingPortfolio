@@ -12,6 +12,16 @@ reset = False
 P = 8623961 #567661
 G = 9
 ranMax = 1000000 #10000000
+rotorList = [
+    rotor.ROTOR_I,
+    rotor.ROTOR_II,
+    rotor.ROTOR_III,
+    rotor.ROTOR_IV,
+    rotor.ROTOR_V,
+    rotor.ROTOR_VI,
+    rotor.ROTOR_VII,
+    rotor.ROTOR_VIII
+    ]
 
 # Funcs
 # Checks if a number is a prime number
@@ -47,24 +57,9 @@ def enigmaGen(k, out):
     random.seed(k)
     # Rotor gen
     rotors = []
-    for i in range(1, 4):
-        r = random.randrange(1, 9)
-        if r == 1:
-            rotors.append(rotor.ROTOR_I)
-        elif r == 2:
-            rotors.append(rotor.ROTOR_II)
-        elif r == 3:
-            rotors.append(rotor.ROTOR_III)
-        elif r == 4:
-            rotors.append(rotor.ROTOR_IV)
-        elif r == 5:
-            rotors.append(rotor.ROTOR_V)
-        elif r == 6:
-            rotors.append(rotor.ROTOR_VI)
-        elif r == 7:
-            rotors.append(rotor.ROTOR_VII)
-        else:
-            rotors.append(rotor.ROTOR_VIII)
+    for i in range(0, 3):
+        rotors.append(random.choice(rotorList))
+        rotorList.remove(rotors[i])
     key = random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase)
     r = random.randrange(1, 4)
     if r == 1:
