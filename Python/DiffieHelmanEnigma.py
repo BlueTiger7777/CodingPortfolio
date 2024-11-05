@@ -66,6 +66,7 @@ def enigmaGen(k, out):
         rotors.append(random.choice(rotorList))
         rotorList.remove(rotors[i])
     key = random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase)
+    ring = random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase)
     reflec = random.choice(reflectors)
     freeLetters = string.ascii_uppercase
     plugs = ""
@@ -77,7 +78,7 @@ def enigmaGen(k, out):
         plugs += l1 + l2
         if i != 10:
             plugs += " "
-    engine = enigma.Enigma(reflec, rotors[0], rotors[1], rotors[2], key=key, plugs=plugs)
+    engine = enigma.Enigma(reflec, rotors[0], rotors[1], rotors[2], key=key, plugs=plugs, ring=ring)
     if out:
         print(f'Machine Settings: {engine}\nPlugs: {plugs}')
     return engine
@@ -85,7 +86,7 @@ def enigmaGen(k, out):
 
 # Main
 # print(genPrime())
-k = diffieGen(P, G) #23 9
+k = diffieGen(P, G)
 print(f'Shared Key: {k}')
 engine = enigmaGen(k, True)
 
