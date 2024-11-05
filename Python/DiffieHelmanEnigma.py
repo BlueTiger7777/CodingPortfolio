@@ -7,10 +7,11 @@ from pyenigma import rotor
 import string
 
 # Constants
-styled = False
-reset = True
-P = 567661
+styled = True
+reset = False
+P = 8623961 #567661
 G = 9
+ranMax = 1000000 #10000000
 
 # Funcs
 # Checks if a number is a prime number
@@ -26,8 +27,9 @@ def isPrime(x):
 def genPrime():
     gen = True
     while gen:
-        x=random.randrange(2, 1000000)
+        x=random.randrange(2, ranMax)
         gen = isPrime(x)
+    #print(x)
     return x
     
 # Diffie Helman key generation
