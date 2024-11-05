@@ -6,6 +6,12 @@ from pyenigma import enigma
 from pyenigma import rotor
 import string
 
+# Constants
+styled = False
+reset = True
+P = 567661
+G = 9
+
 # Funcs
 # Checks if a number is a prime number
 def isPrime(x):
@@ -83,22 +89,28 @@ def enigmaGen(k, out):
 
 # Main
 # print(genPrime())
-k = diffieGen(567661, 9) #23 9
+k = diffieGen(P, G) #23 9
 print(f'Shared Key: {k}')
 engine = enigmaGen(k, True)
 
 # Tanslate loop
 while True:
-    msg = input("\nMessage: ").upper()
-    for i in msg:
-    	if i not in string.ascii_uppercase:
-    		msg = msg.replace(i, "")
-    j = 0
-    out = ""
-    for i in msg:
-    	j += 1
-    	out += i
-    	if j % 5 == 0:
-    		out += " "
+    msg = input("\nMessage: ")
+    if styled:
+        msg = msg.upper()
+        for i in msg:
+            if i not in string.ascii_uppercase:
+                msg = msg.replace(i, "")
+        j = 0
+        out = ""
+        for i in msg:
+            j += 1
+            out += i
+            if j % 5 == 0:
+                out += " "
+    else:
+        out = msg
     print(f'Output: {engine.encipher(out)}')
-    #engine = enigmaGen(k, False)
+    if reset:
+        engine = enigmaGen(k, False)
+    
