@@ -22,6 +22,11 @@ rotorList = [
     rotor.ROTOR_VII,
     rotor.ROTOR_VIII
     ]
+reflectors = [
+    rotor.ROTOR_Reflector_A,
+    rotor.ROTOR_Reflector_B,
+    rotor.ROTOR_Reflector_C
+    ]
 
 # Funcs
 # Checks if a number is a prime number
@@ -61,13 +66,7 @@ def enigmaGen(k, out):
         rotors.append(random.choice(rotorList))
         rotorList.remove(rotors[i])
     key = random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase)
-    r = random.randrange(1, 4)
-    if r == 1:
-        reflec = rotor.ROTOR_Reflector_A
-    elif r == 2:
-        reflec = rotor.ROTOR_Reflector_B
-    else:
-        reflec = rotor.ROTOR_Reflector_C
+    reflec = random.choice(reflectors)
     freeLetters = string.ascii_uppercase
     plugs = ""
     for i in range(1, 11):
