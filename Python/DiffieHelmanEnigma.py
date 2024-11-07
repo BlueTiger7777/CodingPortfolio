@@ -27,6 +27,7 @@ reflectors = [
     rotor.ROTOR_Reflector_B,
     rotor.ROTOR_Reflector_C
     ]
+members = 4
 
 # Funcs
 # Checks if a number is a prime number
@@ -48,11 +49,18 @@ def genPrime():
     return x
     
 # Diffie Helman key generation
-def diffieGen(P, G):
+def diffieGen(P, G, members):
     a = genPrime()
     x = G**a%P
     print(f'Sent Key: {x}')
-    y = int(input("Peer Generated Key: "))
+    if members <= 2:
+        y = int(input("Peer Generated Key: "))
+    else:
+        for i in range(1, members):
+            y = int(input("Peer Generated Key: "))
+            if i+1 != members:
+                x = y**a%P
+                print(f'Sent Key To Next Computer: {x}')
     k = y**a%P
     return k
     
@@ -86,7 +94,7 @@ def enigmaGen(k, out):
 
 # Main
 # print(genPrime())
-k = diffieGen(P, G)
+k = diffieGen(P, G, members)
 print(f'Shared Key: {k}')
 engine = enigmaGen(k, True)
 
