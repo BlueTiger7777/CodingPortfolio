@@ -1,4 +1,4 @@
-# An algorithum that uses the key of Diffie Helman as the seed to generate the random enigma settings
+# An algorithum that uses the key of Diffie Helman as the seed to generate random enigma settings
 
 # Libs
 import random
@@ -27,7 +27,7 @@ reflectors = [
     rotor.ROTOR_Reflector_B,
     rotor.ROTOR_Reflector_C
     ]
-members = 4
+members = 2
 
 # Funcs
 # Checks if a number is a prime number
@@ -53,14 +53,11 @@ def diffieGen(P, G, members):
     a = genPrime()
     x = G**a%P
     print(f'Sent Key: {x}')
-    if members <= 2:
+    for i in range(1, members):
         y = int(input("Peer Generated Key: "))
-    else:
-        for i in range(1, members):
-            y = int(input("Peer Generated Key: "))
-            if i+1 != members:
-                x = y**a%P
-                print(f'Sent Key To Next Computer: {x}')
+        if i+1 != members:
+            x = y**a%P
+            print(f'Sent Key To Next Computer: {x}')
     k = y**a%P
     return k
     
