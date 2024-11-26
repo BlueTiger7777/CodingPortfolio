@@ -54,7 +54,12 @@ def diffieGen(P, G, members):
     x = G**a%P
     print(f'Sent Key: {x}')
     for i in range(1, members):
-        y = int(input("Peer Generated Key: "))
+        while True:
+            try:
+                y = int(input("Peer Generated Key: "))
+                break
+            except ValueError:
+                print("The key is an interger, got string")
         if i+1 != members:
             x = y**a%P
             print(f'Sent Key To Next Computer: {x}')
