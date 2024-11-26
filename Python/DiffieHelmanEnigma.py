@@ -27,7 +27,7 @@ reflectors = [
     rotor.ROTOR_Reflector_B,
     rotor.ROTOR_Reflector_C
     ]
-members = 2
+members = 3
 
 # Funcs
 # Checks if a number is a prime number
@@ -72,9 +72,12 @@ def enigmaGen(k, out):
     random.seed(k)
     # Rotor gen
     rotors = []
+    rotorListLocal = []
+    for i in rotorList:
+        rotorListLocal.append(i)
     for i in range(0, 3):
-        rotors.append(random.choice(rotorList))
-        rotorList.remove(rotors[i])
+        rotors.append(random.choice(rotorListLocal))
+        rotorListLocal.remove(rotors[i])
     key = random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase)
     ring = random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase)
     reflec = random.choice(reflectors)
