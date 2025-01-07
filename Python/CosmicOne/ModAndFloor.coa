@@ -1,0 +1,10 @@
+LDI r1 11
+LDI r2 5
+CAL .divide
+AND r3 r4 r5
+HLT
+.divide SUB r1 r2 r3
+BRH !C .return
+INC r4
+JMP .divide
+.return RET
