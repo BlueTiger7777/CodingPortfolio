@@ -43,6 +43,10 @@ for i in raw:
         command = line[0:]
     match command[0]:
         # Psuedo commands
+        ''' Another way to do a NOP
+        case "NOP":
+            out = "0010" + reg("r0") + reg("r0") + reg("r0")
+        '''
         case "INC":
             out = "1001" + reg(command[1]) + dtb(1)
         case "DEC":
