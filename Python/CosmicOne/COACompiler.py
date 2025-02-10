@@ -54,6 +54,8 @@ for i in raw:
             out = "0011" + reg(command[1]) + reg(command[2]) + reg("r0")
         case "NOT":
             out = "0100" + reg(command[1]) + reg("r0") + reg(command[2])
+        case "LSH":
+            out = "0010" + reg(command[1]) + reg(command[1]) + reg(command[2])
         # Instruction set commands
         case "NOP":
              out = dtb(0, 16)
@@ -110,11 +112,15 @@ for i in raw:
             out = "1100" + dtb(0, 2) + dtb(jmpAddr, 10)
         case "RET":
             out = "1101" + dtb(0, 12)
+        case "LOD":
+            out = "1110" + reg(command[1]) + reg(command[2]) + dtb(command[3], 4)
+        case "STR":
+            out = "1111" + reg(command[1]) + reg(command[2]) + dtb(command[3], 4)
     com.insert(0, out)
 
 # Creates a list of byte ints
 for i in com:
-    print(i)
+    print(f'{i[0:4]} {i[4:8]}   {i[8:12]} {i[12:]}')
     binOut.append(int(i[0:8],2))
     binOut.append(int(i[8:],2))
 
@@ -124,3 +130,4 @@ with open("program.bin", "wb") as f:
     f.close()
 
 print("\nProgram compiled, a copy of the terminal output is found in `program.bin`")
+
