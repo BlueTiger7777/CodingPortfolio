@@ -1,0 +1,11 @@
+LDI r1 5
+LDI r2 3
+CAL .mult
+HLT
+.mult ADD r2 r0 r14
+.multLoop DEC r14
+CMP r2 r14
+BRH !C .multEscape
+ADD r1 r3 r3
+JMP .multLoop
+.multEscape RET
