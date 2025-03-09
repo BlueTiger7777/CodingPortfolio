@@ -255,7 +255,6 @@ end
 
 shift(shiftState)
 text(entredAddr)
-link(defaultAddr)
 
 -- Keyboard Typing
 while true do
