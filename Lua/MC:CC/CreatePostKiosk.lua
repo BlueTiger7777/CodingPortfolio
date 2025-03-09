@@ -242,9 +242,6 @@ end
 function link(addr)
 	l.clear()
 	l.update()
-	if addr:len() ~= 0 then
-		addr = defaultAddr
-	end
 	l.setCursorPos(1,1)
 	l.write(addr)
 	l.update()
@@ -255,7 +252,7 @@ end
 
 shift(shiftState)
 text(entredAddr)
-link(entredAddr)
+link(defaultAddr)
 
 -- Keyboard Typing
 while true do
