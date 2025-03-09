@@ -3,6 +3,7 @@ m = peripheral.find("monitor")
 l = peripheral.find("Create_DisplayLink")
 
 -- Vars
+deafultAddr("<addres>")
 shiftState = false
 entredAddr = ""
 
@@ -25,7 +26,7 @@ m.write(" ")
 -- Light blue pass
 m.setBackgroundColor(8)
 m.setCursorPos(1,1)
-m.write("Rev06-03-2025")
+m.write("Rev09-03-2025")
 -- Red pass
 m.setBackgroundColor(16384)
 m.setCursorPos(29, 16)
@@ -241,14 +242,15 @@ end
 function link(addr)
 	l.clear()
 	l.update()
+	if addr:len() ~= 0 then
+		addr = defaultAddr
+	end
 	l.setCursorPos(1,1)
 	l.write(addr)
 	l.update()
-	if addr:len() ~= 0 then
-		redstone.setAnalogOutput("back", 15)
-		os.sleep(1)
-		redstone.setAnalogOutput("back", 0)
-	end
+	redstone.setAnalogOutput("back", 15)
+	os.sleep(1)
+	redstone.setAnalogOutput("back", 0)
 end
 
 shift(shiftState)
