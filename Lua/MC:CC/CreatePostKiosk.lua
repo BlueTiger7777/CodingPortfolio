@@ -3,7 +3,7 @@ m = peripheral.find("monitor")
 l = peripheral.find("Create_DisplayLink")
 
 -- Vars
-defaultAddr = ("<addres>")
+defaultAddr = ("<address>")
 shiftState = false
 entredAddr = ""
 
