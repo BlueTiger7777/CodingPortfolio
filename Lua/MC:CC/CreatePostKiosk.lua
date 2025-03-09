@@ -240,6 +240,9 @@ function text(addr)
 end
 
 function link(addr)
+	if addr:len() == 0 then
+		addr = defaultAddr
+	end
 	l.clear()
 	l.update()
 	l.setCursorPos(1,1)
