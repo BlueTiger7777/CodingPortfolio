@@ -93,7 +93,7 @@ for i in raw:
                         jmpAddr = label[1]
                         break
             else:
-                jmpAddr = command[1]
+                jmpAddr = command[2]
             match command[1]:
                 case "Z":
                     cond = "00"
@@ -105,10 +105,13 @@ for i in raw:
                     cond = "11"
             out = "1011" + cond + dtb(jmpAddr, 10)
         case "CAL":
-            for label in labels:
-                if label[0] == command[1][1:]:
-                    jmpAddr = label[1]
-                    break
+            if command[1][0] == ".":
+                for label in labels:
+                    if label[0] == command[1][1:]:
+                        jmpAddr = label[1]
+                        break
+            else:
+                jmpAddr = command[1]
             out = "1100" + dtb(0, 2) + dtb(jmpAddr, 10)
         case "RET":
             out = "1101" + dtb(0, 12)
@@ -130,4 +133,3 @@ with open("program.bin", "wb") as f:
     f.close()
 
 print("\nProgram compiled, a copy of the terminal output is found in `program.bin`")
-
