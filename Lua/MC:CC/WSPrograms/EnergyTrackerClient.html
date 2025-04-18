@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<style>
+div {
+	font-family: Consolas;
+	color: #f0f0f0;
+	background-color: #191919;
+}
+
+#energyStore {
+  width: 100%;
+  background-color: #cc4c4c;
+}
+
+#energyBar {
+  width: 10%;
+  height: 30px;
+  background-color: #57a64e;
+  text-align: center;
+  line-height: 30px;
+}
+
+#graphBarPos {
+  display: inline-block;
+  width: 28px;
+  background-color: #57a64e;
+  border: 1px #57a64e;
+}
+
+#graphBarNeg {
+  display: inline-block;
+  width: 28px;
+  background-color: #cc4c4c;
+  border: 1px #cc4c4c;
+}
+
+.container {
+  height: 800px;
+  position: relative;
+  background-color: #4c4c4c;
+}
+
+.vertical-centerPos {
+  margin: 0;
+  position: absolute;
+  top: 0%;
+  -ms-transform: translateY(-25%)
+  transform: translateY(-25%)
+}
+
+.vertical-centerNeg {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+}
+</style>
+<head>
+  <title>MC:CC Webapp</title>
+
+  <script type="text/javascript">
+
+    var ws;
+	window.prevChange = [];
+    
+    function init() {
+
+	  var graphPos = document.getElementById("graphPos");
+	  var graphNeg = document.getElementById("graphNeg");
+	  for (let i = 0; i < 68; i++) {
+	    prevChange.push(0);
+		var div = document.createElement("div");
+		div.id = "graphBarPos";
+		div.className = "vertical-centerPos";
+		div.style = "height: 50px; left: " + 28*i + "px;";
+		graphPos.appendChild(div);
+		var div = document.createElement("div");
+		div.id = "graphBarNeg";
+		div.className = "vertical-centerNeg";
+		div.style = "height: 50px; left: " + 28*i + "px;";
+		graphNeg.appendChild(div);
+	  };
+	  
+      // Connect to Web Socket
+      ws = new WebSocket("ws://localhost:9001/");
+	  // client declared themself as a hello
+
+      // Set event handlers.
+      ws.onopen = function() {
+        output("onopen");
+		ws.send("Webapp");
+      };
+      
+      ws.onmessage = function(e) {
+        // e.data contains received string.
+        output("onmessage: " + e.data);
+		if (e.data.slice(0, 6) == "Webapp") {
+			updateEnergy(e.data.split(" "));
+		};
+      };
+      
+      ws.onclose = function() {
+        output("onclose");
+      };
+
+      ws.onerror = function(e) {
+        output("onerror");
+        console.log(e)
+      };
+
+    }
+    
+    function onSubmit() {
+      var input = document.getElementById("input");
+      // You can send message to the Web Socket using ws.send.
+      ws.send(input.value);
+      output("send: " + input.value);
+      input.value = "";
+      input.focus();
+    }
+    
+    function onCloseClick() {
+      ws.close();
+    }
+    
+    function output(str) {
+      var log = document.getElementById("log");
+      var escaped = str.replace(/&/, "&amp;").replace(/</, "&lt;").
+        replace(/>/, "&gt;").replace(/"/, "&quot;"); // "
+      log.innerHTML = escaped + "<br>" + log.innerHTML;
+    }
+	
+	function updateEnergy(dataArr) {
+		var stor = document.getElementById("energyBar");
+		var width = (Number(dataArr[2])/Number(dataArr[1]))*100;
+		stor.style.width = width + "%";
+		stor.innerHTML = dataArr[2] + " / " + dataArr[1];
+		for (var i = prevChange.length; i > 0; i-=1) {
+			prevChange[i] = prevChange[i-1];
+		};
+		prevChange[0] = Number(dataArr[4]) - Number(dataArr[5]);
+		var div = document.getElementById("graphPos");
+		var divs = div.getElementsByTagName("div");
+		var divArray = [];
+		for (var i = 0; i < divs.length; i+=1) {
+			if (Math.abs(prevChange[i]) == prevChange[i]) {
+				divs[i].style.height = prevChange[i]/dataArr[3]*400 + "px";
+			} else {
+				divs[i].style.height = "0px"
+			};
+			divs[i].style.top = -1/8*divs[i].getBoundingClientRect().height+50 + "%";
+		};
+		var div = document.getElementById("graphNeg");
+		var divs = div.getElementsByTagName("div");
+		var divArray = [];
+		for (var i = 0; i < divs.length; i+=1) {
+			if (Math.abs(prevChange[i]) == prevChange[i]) {
+				divs[i].style.height = "0px"
+			} else {
+				divs[i].style.height = -prevChange[i]/dataArr[3]*400 + "px";
+			};
+		};
+	}
+  </script>
+</head>
+<body onload="init();">
+  <div>Energy Level</div>
+  <div id="energyStore">
+	<div id="energyBar">10/100</div>
+  </div>
+  <div>
+	Energy Change
+  </div>
+  <div class="container">
+	<div id="graphPos">
+	</div>
+	<div id ="graphNeg">
+	</div>
+  </div>
+  <div id="log"></div>
+</body>
+</html>
