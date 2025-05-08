@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<style>
+div {
+    font-family: Ubuntu Mono;
+    color: #f0f0f0;
+}
+
+button {
+    font-family: Ubuntu Mono;
+}
+
+#block {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.contmap {
+    height: 800px;
+    position: relative;
+}
+
+.cont {
+    width: 1051px;
+    height: 800px;
+    position: absolute;
+    background-color: #191919;
+}
+
+.logbtn {
+    width: 1051px;
+    height: 800px;
+    position: relative;
+}
+
+.log {
+    position: absolute;
+    width: 452px;
+    height: 800px;
+    background-color: #4c4c4c;
+}
+
+.btnsta {
+    position: absolute;
+    width: 579px;
+    height: 800px;
+    left: 462px;
+}
+
+.sta {
+    position: relative;
+    width: 579px;
+    height: 200px;
+    background-color: #4c4c4c;
+}
+
+.btn {
+    position: relative;
+    width: 579px;
+    height: 600px;
+    background-color: #999999;
+}
+
+.btn_lable {
+    position: absolute;
+}
+
+.btn_move {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background-color: #999999;
+    color: #191919;
+    border: 2px solid #4c99b2;
+}
+
+.btn_move:hover {
+    background-color: #4c99b2;
+}
+
+.btn_inspect {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background-color: #999999;
+    color: #191919;
+    border: 2px solid #7fcc19;
+}
+
+.btn_inspect:hover {
+    background-color: #7fcc19;
+}
+
+.btn_dig {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background-color: #999999;
+    color: #191919;
+    border: 2px solid #cc4c4c;
+}
+
+.btn_dig:hover {
+    background-color: #cc4c4c;
+}
+
+.btn_place {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background-color: #999999;
+    color: #191919;
+    border: 2px solid #3366cc;
+}
+
+.btn_place:hover {
+    background-color: #3366cc;
+}
+
+.world {
+    width: 800px;
+    height: 800px;
+    left: 1051px;
+    position: absolute;
+    background-color: #191919;
+}
+
+.block {
+    margin: 0;
+    position: absolute;
+}
+</style>
+<head>
+    <title>MC:CC Turtle Gambit</title>
+    <script>
+        // Connects to the websocket
+        var ws;
+        ws = new WebSocket("ws://localhost:9001");
+        
+        // Arrays
+        window.blocks = [];
+        window.cmdlog = [];
+        
+        // Initalisation Function
+        function init() {
+            // ws.send("Controller")
+            var world = document.getElementById("world");
+            for (let i = 0; i < 16; i++) {
+                for (let j = 0; j < 16; j++) {
+                    blocks.push("Null");
+                    var div = document.createElement("div");
+                    div.id = "block";
+                    div.className = "block";
+                    div.title = "Null";
+                    div.style = "top: " + 50*i + "px; left: " + 50*j + "px; background: #" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0")
+                    world.appendChild(div);
+                };
+            };
+            var log = document.getElementById("log");
+            for (let i = 0; i < 47; i++) {
+                cmdlog.push("");
+                var div = document.createElement("div");
+                div.id = "logLine";
+                div.innerHTML = "Test";
+                log.appendChild(div);
+            };
+        };
+        
+        // Set event handlers
+        ws.onopen = function () {
+            console.log("onopen");
+        };
+        
+        ws.onmessage = function (e) {
+            cosole.log("onmessage" + e.data);
+        };
+        
+        ws.onclose = function () {
+            console.log("onclose");
+        };
+        
+        ws.onerror = function (e) {
+            console.log(e);
+        };
+        
+        // Hand entered command handler
+        function onSubmit () {
+            var input = document.getElementById("cmd");
+            console.log("Send: " + input.value);
+            ws.send(input.value);
+            var colourTest = 0;
+            for (var i = input.value.length-1; i > -1; i--) {
+                colourTest += input.value.charCodeAt(i)**4;
+            };
+            colourTest %= 16777216
+            var hex = ("000000" + colourTest.toString(16).toUpperCase()).slice(-6);
+            console.log(colourTest + ", " + hex);
+            for (var i = cmdlog.length; i > 0; i--) {
+                cmdlog[i] = cmdlog[i-1];
+            };
+            cmdlog[0] = input.value;
+            var div = document.getElementById("log");
+            var divs = div.getElementsByTagName("div");
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].innerHTML = cmdlog[i];
+            };
+            input.value = "";
+            input.focus();
+        };
+        
+        // Button functions
+        function btn_move(btn) {
+            if (btn == 0) {
+                console.log("forward");
+            } else if (btn == 1) {
+                console.log("back");
+            } else if (btn == 2) {
+                console.log("left");
+            } else if (btn == 3) {
+                console.log("right");
+            } else if (btn == 4) {
+                console.log("up");
+            } else if (btn == 5) {
+                console.log("down");
+            };
+        };
+        
+        function btn_inspect(btn) {
+            if (btn == 0) {
+                console.log("inspect");
+            } else if (btn == 1) {
+                console.log("inspectUp");
+            } else if (btn == 2) {
+                console.log("inspectDown");
+            };
+        };
+        
+        function btn_dig(btn) {
+            if (btn == 0) {
+                console.log("dig");
+            } else if (btn == 1) {
+                console.log("digUp");
+            } else if (btn == 2) {
+                console.log("digDown");
+            };
+        };
+        
+        function btn_place(btn) {
+            if (btn == 0) {
+                console.log("place");
+            } else if (btn == 1) {
+                console.log("placeUp");
+            } else if (btn == 2) {
+                console.log("placeDown");
+            };
+        };
+        
+        // Map update
+        // Local map stored on the client machine and a master copy on the server that a client can request
+        function updateMap() {};
+    </script>
+</head>
+<body onload="init();" style="background: #191919;">
+    <div>
+        <form onsubmit="onSubmit(); return false;">
+            <label for="cmd">Command:</label><br>
+            <input type="text" id="cmd" name="cmd">
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    <div class="contmap">
+        <div class="cont">
+            <div class="logbtn">
+                <div id="log" class="log"></div>
+                <div id="btnsta" class="btnsta">
+                    <div id="sta" class="sta">sup</div>
+                    <div id="btn" class="btn">
+                        <div class="btn_lable" style="top:194px; left:84.5px">Move</div>
+                        <button class="btn_move" onclick="btn_move(0)"  style="top: 5px; left: 68px;">Forward</button>
+                        <button class="btn_move" onclick="btn_move(1)"  style="top: 131px; left: 68px;">Back</button>
+                        <button class="btn_move" onclick="btn_move(2)"  style="top: 68px; left: 5px;">Left</button>
+                        <button class="btn_move" onclick="btn_move(3)"  style="top: 68px; left: 131px;">Right</button>
+                        <button class="btn_move" onclick="btn_move(4)"  style="top: 5px; left: 131px;">Up</button>
+                        <button class="btn_move" onclick="btn_move(5)"  style="top: 5px; left: 5px;">Down</button>
+                        <div class="btn_lable" style="top:194px; left:261.5px">Inspect</div>
+                        <button class="btn_inspect" onclick="btn_inspect(0)"  style="top: 68px; left: 257px;">Forward</button>
+                        <button class="btn_inspect" onclick="btn_inspect(1)"  style="top: 5px; left: 257px;">Up</button>
+                        <button class="btn_inspect" onclick="btn_inspect(2)"  style="top: 131px; left: 257px;">Down</button>
+                        <div class="btn_lable" style="top:194px; left:403.5px">Dig</div>
+                        <button class="btn_dig" onclick="btn_dig(0)"  style="top: 68px; left: 383px;">Forward</button>
+                        <button class="btn_dig" onclick="btn_dig(1)"  style="top: 5px; left: 383px;">Up</button>
+                        <button class="btn_dig" onclick="btn_dig(2)"  style="top: 131px; left: 383px;">Down</button>
+                        <div class="btn_lable" style="top:194px; left:521.5px">Place</div>
+                        <button class="btn_place" onclick="btn_place(0)"  style="top: 68px; left: 509px;">Forward</button>
+                        <button class="btn_place" onclick="btn_place(1)"  style="top: 5px; left: 509px;">Up</button>
+                        <button class="btn_place" onclick="btn_place(2)"  style="top: 131px; left: 509px;">Down</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="world" class="world"></div>
+    </div>
+</body>
+</html>
