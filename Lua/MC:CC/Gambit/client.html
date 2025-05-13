@@ -117,6 +117,19 @@ button {
     background-color: #3366cc;
 }
 
+.btn_inv {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background-color: #999999;
+    color: #191919;
+    border: 2px solid #f2b233;
+}
+
+.btn_inv:hover {
+    background-color: #f2b233;
+}
+
 .world {
     width: 800px;
     height: 800px;
@@ -128,6 +141,44 @@ button {
 .block {
     margin: 0;
     position: absolute;
+}
+
+.dropbtn {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+}
+
+.drop-cont {
+    display: none;
+    position: absolute;
+    background-color: #191919;
+}
+
+.dropbtn:hover .drop-cont {
+    display: block;
+}
+
+.turt {
+    color: #f0f0f0;
+}
+
+.turt:hover {
+    background-color: #4c99b2;
+}
+
+.fuelStore {
+    position: absolute;
+    width: 569px;
+    background-color: #cc4c4c;
+}
+
+.fuelBar {
+    width: 10%;
+    height: 20px;
+    background-color: #57a64e;
+    text-align: center;
+    line-height: 20px;
 }
 </style>
 <head>
@@ -255,6 +306,30 @@ button {
             };
         };
         
+        function btn_inv(btn) {
+            if (btn == 16) {
+                console.log("equipLeft");
+            } else if (btn == 17) {
+                console.log("equipRight");
+            } else {
+                console.log("select " + (btn+1))
+            };
+        };
+        
+        function btn_turt(btn) {
+            span = document.getElementById("activeTurt");
+            if (btn == 0) {
+                console.log("test1");
+                span.innerHTML = "Test";
+            } else if (btn == 1) {
+                console.log("test2");
+                span.innerHTML = "Test 2"
+            } else if (btn == 2) {
+                console.log("test3");
+                span.innerHTML = "Test 3"
+            };
+        }
+        
         // Map update
         // Local map stored on the client machine and a master copy on the server that a client can request
         function updateMap() {};
@@ -273,27 +348,65 @@ button {
             <div class="logbtn">
                 <div id="log" class="log"></div>
                 <div id="btnsta" class="btnsta">
-                    <div id="sta" class="sta">sup</div>
+                    <div id="sta" class="sta">
+                        <div class="btn_lable" style="top: 23px; left: 5px;">Active Turtle:</div>
+                        <div class="btn_lable" style="top: 40px; left: 69px;">Cords:</div>
+                        <div class="btn_lable" id="turtCords" style="top: 40px; left: 122px;">-10000000, -100, -10000000</div>
+                        <div class="btn_lable" style="top: 57px; left: 37px;">Direction:</div>
+                        <div class="btn_lable" id="turtDirec" style="top: 57px; left: 122px;">North</div>
+                        <div class="btn_lable" style="top: 76px; left: 69px;">Chunk:</div>
+                        <div class="btn_lable" id="turtDirec" style="top: 76px; left: 122px;">15, 15</div>
+                        <div class="btn_lable" style="top: 95px; left: 61px;">Region:</div>
+                        <div class="btn_lable" id="turtDirec" style="top: 95px; left: 122px;">0, 0</div>
+                        <div class="dropbtn" style="top: 23px; left: 122px;">
+                            <span id="activeTurt">Turtle</span> 
+                            <div class="drop-cont">
+                                <div class="turt" onclick="btn_turt(0)">Test1</div>
+                            </div>
+                        </div>
+                        <div class="fuelStore" style="left: 5px; top: 5px;">
+                            <div class="fuelBar" id="fuelBar">100/1000</div>
+                        </div>
+                    </div>
                     <div id="btn" class="btn">
                         <div class="btn_lable" style="top:194px; left:84.5px">Move</div>
-                        <button class="btn_move" onclick="btn_move(0)"  style="top: 5px; left: 68px;">Forward</button>
-                        <button class="btn_move" onclick="btn_move(1)"  style="top: 131px; left: 68px;">Back</button>
-                        <button class="btn_move" onclick="btn_move(2)"  style="top: 68px; left: 5px;">Left</button>
-                        <button class="btn_move" onclick="btn_move(3)"  style="top: 68px; left: 131px;">Right</button>
-                        <button class="btn_move" onclick="btn_move(4)"  style="top: 5px; left: 131px;">Up</button>
-                        <button class="btn_move" onclick="btn_move(5)"  style="top: 5px; left: 5px;">Down</button>
+                        <button class="btn_move" onclick="btn_move(0)" style="top: 5px; left: 68px;">Forward</button>
+                        <button class="btn_move" onclick="btn_move(1)" style="top: 131px; left: 68px;">Back</button>
+                        <button class="btn_move" onclick="btn_move(2)" style="top: 68px; left: 5px;">Left</button>
+                        <button class="btn_move" onclick="btn_move(3)" style="top: 68px; left: 131px;">Right</button>
+                        <button class="btn_move" onclick="btn_move(4)" style="top: 5px; left: 131px;">Up</button>
+                        <button class="btn_move" onclick="btn_move(5)" style="top: 5px; left: 5px;">Down</button>
                         <div class="btn_lable" style="top:194px; left:261.5px">Inspect</div>
-                        <button class="btn_inspect" onclick="btn_inspect(0)"  style="top: 68px; left: 257px;">Forward</button>
-                        <button class="btn_inspect" onclick="btn_inspect(1)"  style="top: 5px; left: 257px;">Up</button>
-                        <button class="btn_inspect" onclick="btn_inspect(2)"  style="top: 131px; left: 257px;">Down</button>
+                        <button class="btn_inspect" onclick="btn_inspect(0)" style="top: 68px; left: 257px;">Forward</button>
+                        <button class="btn_inspect" onclick="btn_inspect(1)" style="top: 5px; left: 257px;">Up</button>
+                        <button class="btn_inspect" onclick="btn_inspect(2)" style="top: 131px; left: 257px;">Down</button>
                         <div class="btn_lable" style="top:194px; left:403.5px">Dig</div>
-                        <button class="btn_dig" onclick="btn_dig(0)"  style="top: 68px; left: 383px;">Forward</button>
-                        <button class="btn_dig" onclick="btn_dig(1)"  style="top: 5px; left: 383px;">Up</button>
-                        <button class="btn_dig" onclick="btn_dig(2)"  style="top: 131px; left: 383px;">Down</button>
+                        <button class="btn_dig" onclick="btn_dig(0)" style="top: 68px; left: 383px;">Forward</button>
+                        <button class="btn_dig" onclick="btn_dig(1)" style="top: 5px; left: 383px;">Up</button>
+                        <button class="btn_dig" onclick="btn_dig(2)" style="top: 131px; left: 383px;">Down</button>
                         <div class="btn_lable" style="top:194px; left:521.5px">Place</div>
-                        <button class="btn_place" onclick="btn_place(0)"  style="top: 68px; left: 509px;">Forward</button>
-                        <button class="btn_place" onclick="btn_place(1)"  style="top: 5px; left: 509px;">Up</button>
-                        <button class="btn_place" onclick="btn_place(2)"  style="top: 131px; left: 509px;">Down</button>
+                        <button class="btn_place" onclick="btn_place(0)" style="top: 68px; left: 509px;">Forward</button>
+                        <button class="btn_place" onclick="btn_place(1)" style="top: 5px; left: 509px;">Up</button>
+                        <button class="btn_place" onclick="btn_place(2)" style="top: 131px; left: 509px;">Down</button>
+                        <div class="btn_lable" style="bottom: 263px; left: 95px;">Inventory</div>
+                        <button class="btn_inv" onclick="btn_inv(0)" style="bottom: 194px; left: 5px;" title="Null">1</button>
+                        <button class="btn_inv" onclick="btn_inv(1)" style="bottom: 194px; left: 68px;" title="Null">2</button>
+                        <button class="btn_inv" onclick="btn_inv(2)" style="bottom: 194px; left: 131px;" title="Null">3</button>
+                        <button class="btn_inv" onclick="btn_inv(3)" style="bottom: 194px; left: 194px;" title="Null">4</button>
+                        <button class="btn_inv" onclick="btn_inv(4)" style="bottom: 131px; left: 5px;" title="Null">5</button>
+                        <button class="btn_inv" onclick="btn_inv(5)" style="bottom: 131px; left: 68px;" title="Null">6</button>
+                        <button class="btn_inv" onclick="btn_inv(6)" style="bottom: 131px; left: 131px;" title="Null">7</button>
+                        <button class="btn_inv" onclick="btn_inv(7)" style="bottom: 131px; left: 194px;" title="Null">8</button>
+                        <button class="btn_inv" onclick="btn_inv(8)" style="bottom: 68px; left: 5px;" title="Null">9</button>
+                        <button class="btn_inv" onclick="btn_inv(9)" style="bottom: 68px; left: 68px;" title="Null">10</button>
+                        <button class="btn_inv" onclick="btn_inv(10)" style="bottom: 68px; left: 131px;" title="Null">11</button>
+                        <button class="btn_inv" onclick="btn_inv(11)" style="bottom: 68px; left: 194px;" title="Null">12</button>
+                        <button class="btn_inv" onclick="btn_inv(12)" style="bottom: 5px; left: 5px;" title="Null">13</button>
+                        <button class="btn_inv" onclick="btn_inv(13)" style="bottom: 5px; left: 68px;" title="Null">14</button>
+                        <button class="btn_inv" onclick="btn_inv(14)" style="bottom: 5px; left: 131px;" title="Null">15</button>
+                        <button class="btn_inv" onclick="btn_inv(15)" style="bottom: 5px; left: 194px;" title="Null">16</button>
+                        <button class="btn_inv" onclick="btn_inv(16)" style="bottom: 131px; left: 262px;" title="Null">Left</button>
+                        <button class="btn_inv" onclick="btn_inv(17)" style="bottom: 68px; left: 262px;" title="Null">Right</button>
                     </div>
                 </div>
             </div>
