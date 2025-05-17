@@ -65,9 +65,38 @@ while true do
             --end
             ws.send("FIN")
         -- Turtle info
-        elseif cmd == "gps" then
-            x, y, z = gps.locate()
-            ws.send(x.." "..y.." "..z)
+        elseif cmd == "locate" then
+            x1, y1, z1 = gps.locate()
+            i = 4
+            while i > 0 then
+                if not turtle.detect() then
+                    turtle.forward()
+                    x2, y2, z2 = gps.locate()
+                    if x1 > x2 then
+                        dire = "North"
+                    elseif z1 < z2 then
+                        dire = "East"
+                    elseif x1 < x2 then
+                        dire = "South"
+                    else
+                        dire = "West"
+                    end
+                    i = 0
+                    turtle.back()
+                else
+                    turtle.turnRight()
+                    i -= 1
+                    if i == 0 then
+                        dire = "Unable to get direction"
+                    end
+                end
+            end
+            ws.send(x1.." "..y1.." "..z1.." "..dire)
+            ws.send("FIN")
+        elseif cmd == "fuelCheck" then
+            fuelMax = turtle.getFuelLimit()
+            fuelLevel = turtle.getFuelLevel()
+            ws.send(fuelMax.." "..fuelLevel)
             ws.send("FIN")
         end
     end
