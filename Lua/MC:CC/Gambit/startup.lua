@@ -68,24 +68,24 @@ while true do
         elseif cmd == "locate" then
             x1, y1, z1 = gps.locate()
             i = 4
-            while i > 0 then
+            while i > 0 do
                 if not turtle.detect() then
                     turtle.forward()
                     x2, y2, z2 = gps.locate()
                     if x1 > x2 then
-                        dire = "North"
-                    elseif z1 < z2 then
-                        dire = "East"
-                    elseif x1 < x2 then
-                        dire = "South"
-                    else
                         dire = "West"
+                    elseif z1 < z2 then
+                        dire = "South"
+                    elseif x1 < x2 then
+                        dire = "East"
+                    else
+                        dire = "North"
                     end
                     i = 0
                     turtle.back()
                 else
                     turtle.turnRight()
-                    i -= 1
+                    i = i-1
                     if i == 0 then
                         dire = "Unable to get direction"
                     end
