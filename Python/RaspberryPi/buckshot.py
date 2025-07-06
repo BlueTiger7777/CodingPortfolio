@@ -1,6 +1,15 @@
 # Imports
 from RPi import GPIO
 from time import sleep
+import sys
+import os
+
+# Setup
+os.system("clear")
+
+# Chars 8x16
+tw, th = os.get_terminal_size()
+titleCen = (tw-100)/2+10
 
 # Pins
 btnL = 22
@@ -29,6 +38,15 @@ GPIO.setup(d4, GPIO.OUT)
 GPIO.setup(d5, GPIO.OUT)
 GPIO.setup(d6, GPIO.OUT)
 GPIO.setup(d7, GPIO.OUT)
+
+# Classes
+# Text and Background Colours
+class tcolours:
+    BLIN = '\33[5m'
+    TRED = '\33[91m'
+    TYEL = '\33[93m'
+    BYEL = '\33[103m'
+    ENDC = '\33[0m'
 
 # Functions
 # Display inisalisation
@@ -136,9 +154,100 @@ def buckshotHP(hpList, turn):
                 l2out += "→"+hp
             else:
                 l2out += " "+hp
+        printHP(i, hpList[i], turn)
     return [l1out, l2out]
 
+# Prints at a specified character position x = vertical, y = horizontal
+def termPrint(x, y, text, reset=True):
+    sys.stdout.write("\x1b8")
+    if reset:
+        sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (x, y, text))
+        sys.stdout.flush()
+    else:
+        sys.stdout.write("\x1b7\x1b[%d;%df%s" % (x, y, text))
+
+# Prints the buckshot title
+def printTitle():
+    with open("titleBuckshot.txt", "r") as f:
+        lines = f.readlines()
+        f.close()
+    for i in range(len(lines)):
+        termPrint(i+2, titleCen, f'\33[33m{lines[i]}{tcolours.ENDC}')
+
+# Prints hp
+def printHP(player, hp, turn):
+    with open("hpBuckshot.txt", "r") as f:
+        lines = f.readlines()
+        f.close()
+    with open("arrowLBuckshot.txt", "r") as f:
+        arrowL = f.readlines()
+        f.close()
+    with open("arrowRBuckshot.txt", "r") as f:
+        arrowR = f.readlines()
+        f.close()
+    # Line to begin on
+    if player < 5:
+        x = 2
+    else:
+        x = 22
+    # Where on said line
+    match player % 5:
+        case 0:
+            y = 2
+        case 1:
+            y = 29
+        case 2:
+            y = 56
+        case 3:
+            y = 83
+        case 4:
+            y = 110
+    if turn == player:
+        match player % 5:
+            case 0:
+                aly = 21
+                ary = None
+            case 1:
+                aly = 48
+                ary = 21
+            case 2:
+                aly = 75
+                ary = 48
+            case 3:
+                aly = 102
+                ary = 75
+            case 4:
+                aly = None
+                ary = 102
+        if aly != None:
+            for i in range(len(arrowL)):
+                termPrint(i+x, aly, f'{tcolours.BLIN}{arrowL[i]}{tcolours.ENDC}')
+        if ary != None:
+            for i in range(len(arrowR)):
+                termPrint(i+x, ary, f'{tcolours.BLIN}{arrowR[i]}{tcolours.ENDC}')
+    if hp >= 1:
+        for i in range(len(lines)):
+            termPrint(i+x, y, f'{tcolours.TYEL}{lines[i]}{tcolours.ENDC}')
+    else:
+        for i in range(len(lines)):
+            if i == 7:
+                termPrint(i+x, y, f'{tcolours.TRED}########{tcolours.ENDC}')
+            else:
+                termPrint(i+x, y, "        ")
+    if hp == 2:
+        for i in range(len(lines)):
+            termPrint(i+x, y+10, f'{tcolours.TYEL}{lines[i]}{tcolours.ENDC}')
+    else:
+        for i in range(len(lines)):
+            if i == 7:
+                termPrint(i+x, y+10, f'{tcolours.TRED}########{tcolours.ENDC}')
+            else:
+                termPrint(i+x, y+10, "        ")
+
 # Main
+printTitle()
+termPrint(30, 55, "Please Press Enter")
+
 LCDWidth = 16
 LCDCHR = True
 LCDCMD = False
@@ -158,6 +267,7 @@ selected = 0
 try:
     while not(GPIO.input(btnE)):
         sleep(0.1)
+    termPrint(30, 55, "  > Players:  2   ")
     lcd_string("Players: 2-10", Line1)
     lcd_string(str(players), Line2)
     while not(GPIO.input(btnE)):
@@ -173,15 +283,19 @@ try:
             players = 2
         if update:
             lcd_string(str(players), Line2)
+            termPrint(30, 69, str(players)+" ")
             update = False
         sleep(0.1)
     lcd_string((str(players)+" selected"), Line1)
     lcd_string("Press Enter", Line2)
+    termPrint(30, 54, " "+str(players)+" players selected")
+    termPrint(31, 55, "Please Press Enter")
     playerHP = []
     for i in range(players):
         playerHP.append(2)
     while not(GPIO.input(btnE)):
         sleep(0.1)
+    os.system("clear")
     hpStr = buckshotHP(playerHP, selected)
     lcd_string(hpStr[0], Line1)
     lcd_string(hpStr[1], Line2)
@@ -203,6 +317,7 @@ try:
             if selected == players:
                 selected = 0
             update = True
+            os.system("clear")
         if update:
             hpStr = buckshotHP(playerHP, selected)
             lcd_string(hpStr[0], Line1)
