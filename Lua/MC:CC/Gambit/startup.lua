@@ -73,13 +73,13 @@ while true do
                     turtle.forward()
                     x2, y2, z2 = gps.locate()
                     if x1 > x2 then
-                        dire = "West"
-                    elseif z1 < z2 then
-                        dire = "South"
-                    elseif x1 < x2 then
-                        dire = "East"
-                    else
                         dire = "North"
+                    elseif z1 < z2 then
+                        dire = "East"
+                    elseif x1 < x2 then
+                        dire = "South"
+                    else
+                        dire = "West"
                     end
                     i = 0
                     turtle.back()
