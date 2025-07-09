@@ -6,7 +6,7 @@ import sys
 import math
 
 # Classes
-# Terminal Colours, names bassed off Win11 PowerShell (08/07/2025 18:44)
+# Terminal Colours, names bassed off Win11 PowerShell (09/07/2025 11:02)
 class tcolour:
     # Special
     ENDC = '\33[0m'
@@ -17,7 +17,7 @@ class tcolour:
     TERM = '\33[8m'
     # Standard
     BOLD = '\33[1m'
-    ITAL = '\33[3m'
+    ITALLIC = '\33[3m'
     UNDERLINE = '\33[4m'
     UNDERLINE2 = '\33[21m'
     STRIKE = '\33[9m'
