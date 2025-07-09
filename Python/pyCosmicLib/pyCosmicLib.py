@@ -1,8 +1,9 @@
-# Custom lib of functions and classes]
+# Custom lib of functions and classes
 # Documentation on https://github/BlueTiger7777/CodingPortfolio/Python/pyCosmicLib
 # Required imports
 import os
 import sys
+import math
 
 # Classes
 # Terminal Colours, names bassed off Win11 PowerShell (08/07/2025 18:44)
@@ -108,3 +109,16 @@ def printAsciiArt(filePath, x, y, txtFormat=''):
         f.close()
     for i in range(len(art)):
         termPrint(i+y, x, f'{txtFormat}{art[i]}{tcolour.ENDC}')
+
+# Returns the start position to center text at x cord (09/07/2025 9:41)
+def centerText(x, text, leftAlign=True):
+    if len(text)%2 == 1:
+        return x-math.floor(len(text)/2)
+    elif leftAlign:
+        return int(x-len(text)/2)
+    else:
+        return int(x-len(text)/2+1)
+
+# Clears the terminal (09/07/2025 9:29)
+def termClear():
+    os.system("clear")
