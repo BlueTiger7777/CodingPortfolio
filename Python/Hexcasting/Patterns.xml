@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<patterns>
+	<base>
+		<pattern name="Mind's Reflection">
+			<raw>NORTH_EAST qaq</raw>
+			<rotate>True</rotate>
+			<pop></pop>
+			<push>Entity</push>
+			<desc>Adds me, the caster, to the stack.</desc>
+		</pattern>
+		<pattern name="Compass' Purification">
+			<raw>EAST aa</raw>
+			<rotate>True</rotate>
+			<pop>Entity</pop>
+			<push>Vector</push>
+			<desc>Transforms an entity on the stack into its position.</desc>
+		</pattern>
+		<pattern name="Alidade's Purification">
+			<raw>EAST wa</raw>
+			<rotate>True</rotate>
+			<pop>Entity</pop>
+			<push>Vector</push>
+			<desc>Transforms an entity on the stack into the direction it's looking in, as a unit vector.</desc>
+		</pattern>
+		<pattern name="Stadiometer's Purification">
+			<raw>NORTH_EAST awq</raw>
+			<rotate>True</rotate>
+			<pop>Entity</pop>
+			<push>Number</push>
+			<desc>Transforms an entity on the stack into its height.</desc>
+		</pattern>
+		<pattern name="Pace Purification">
+			<raw>EAST wq</raw>
+			<rotate>True</rotate>
+			<pop>Entity</pop>
+			<push>Vector</push>
+			<desc>Transforms an entity on the stack into the direction in which it's moving, with the speed of that movement as that direction's magnitude.</desc>
+		</pattern>
+		<pattern name="Reveal">
+			<raw>NORTH_EAST aq</raw>
+			<rotate>True</rotate>
+			<pop>Any</pop>
+			<push>Any</push>
+			<desc>Displays the top iota of the stack to me.</desc>
+		</pattern>
+		<pattern name="Archer's Distillation">
+			<raw>EAST wqaawdd</raw>
+			<rotate>True</rotate>
+			<pop>Vector, Vector</pop>
+			<push>Vector</push>
+			<desc>Combines two vectors (a position and a direction) into the answer to the question: If I stood at the position and looked in the direction, what block would I be looking at? Costs a negligible amount of media. For example, casting this with my own position and look vectors will return the coordinates of the block I am looking at. If it doesn't hit anything, the vectors will combine into Null.</desc>
+		</pattern>
+		<pattern name="Architect's Distillation">
+			<raw>EAST weddwqq</raw>
+			<rotate>True</rotate>
+			<pop>Vector, Vector</pop>
+			<push>Vector</push>
+			<desc>Like Archer's Distillation, but instead returns a vector representing the answer to the question: Which side of the block am I looking at? Costs a negligible amount of media. More specifically, it returns the normal vector of the face hit, or a unit vector pointing perpendicular to the face. If I am looking at a floor, it will return (0, 1, 0). If I am looking at the south face of a block, it will return (0, 0, 1).</desc>
+		</pattern>
+		<pattern name="Scout's Distillation">
+			<raw>EAST weaqa</raw>
+			<rotate>True</rotate>
+			<pop>Vector, Vector</pop>
+			<push>Entity</push>
+			<desc>Like Archer's Distillation, but instead returns the entity I am looking at. Costs a negligible amount of media.</desc>
+		</pattern>
+	</base>
+</patterns>
