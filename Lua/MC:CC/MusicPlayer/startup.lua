@@ -5,7 +5,7 @@ local function MP_HFs()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -15,7 +15,7 @@ local function MP_F()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -25,7 +25,7 @@ local function MP_E()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -35,7 +35,7 @@ local function MP_Ds()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -45,7 +45,7 @@ local function MP_D()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -55,7 +55,7 @@ local function MP_Cs()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -65,7 +65,7 @@ local function MP_C()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -75,7 +75,7 @@ local function MP_B()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -85,7 +85,7 @@ local function MP_As()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -95,7 +95,7 @@ local function MP_A()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -105,7 +105,7 @@ local function MP_Gs()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -115,7 +115,7 @@ local function MP_G()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
@@ -125,7 +125,7 @@ local function MP_LFs()
   if relay.getOutput(side) then
       relay.setOutput(side, False)
   else
-      relay.setOutput(side. True)
+      relay.setOutput(side, True)
   end
 end
 
