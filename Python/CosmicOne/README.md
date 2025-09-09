@@ -26,11 +26,6 @@ HLT
 This test is intended to checks if registers 1 and 2 can be used to output for later tests.
 
 Potential reasons for a failed test
-| Debug Step                                                     | Reason                                                                |
-| ---                                                            | ---                                                                   |
-| `R1` and or `R2` dose not contain the value 1                  | `LDI` dosen't work or the offending register(s) don't store the value |
-| `R1` and `R2` are both 1 and the program halts when `Z` is 1   | `BRH` dosen't work                                                    |
-| `R1` and `R2` are both 1 and `Z` is 0                          | `SUB` dosen't work or the `Z` flag doesn't get set                    |
-
-> [!NOTE]
-> Due to the way it is done it also tests the `SUB`, `BRH` and `HLT` oprands along with setting the `Z` flag
+| Debug Step                | Reason  |
+| ---                       | ---     |
+| Update with error and fix | Temp :) |
