@@ -1,0 +1,7 @@
+LDI R1 1
+LDI R2 1
+CMP R1 R2
+BRH Z .pass
+HLT
+.pass NOP
+HLT
